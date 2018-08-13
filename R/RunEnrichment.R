@@ -3,8 +3,10 @@ RunEnrichment <- function(genes, genes.bg, jonto = "BP", GOterms = FALSE, tstart
   # GOterms: FALSE does all GO terms. Otherwise input a list c("GO:008152") as example https://www.ebi.ac.uk/QuickGO/annotations
   # tstarts: list of tstarts
   # ncores: number of cores for parallelization
-  enrichment <- parallel::mclapply(tstarts, function(tstart){
-    source("/home/yeung/projects/CyclicGO/R/AnalyzeGeneEnrichment.R")
+
+  # enrichment <- parallel::mclapply(tstarts, function(tstart){
+  enrichment <- lapply(tstarts, function(tstart){
+    # source("/home/yeung/projects/CyclicGO/R/AnalyzeGeneEnrichment.R")
     tend <- tstart + tstep
     if (tend > day){
       tend <- tend - day
@@ -16,6 +18,7 @@ RunEnrichment <- function(genes, genes.bg, jonto = "BP", GOterms = FALSE, tstart
     enrichment <- subset(enrichment, !is.na(GO.ID))
     enrichment$tstart <- tstart
     return(as.data.frame(subset(enrichment, !is.na(GO.ID))))
-  }, mc.cores = ncores)
+  # }, mc.cores = ncores)
+  })
   print(enrichment)
 }

@@ -12,7 +12,7 @@ library(parallel)
 library(DBI)
 library(topGO)
 library(org.Mm.eg.db)
-# library(GenomicRanges)
+library(GenomicRanges)
 
 # TEST ENRICHMENT ---------------------------------------------------------
 
@@ -30,10 +30,16 @@ library(org.Mm.eg.db)
 # source("/home/yeung/projects/CyclicGO/R/RunEnrichment.R")
 # source("/home/yeung/projects/CyclicGO/R/DataHandlingFunctions.R")
 
-genes.fg.all <- read.csv2(file = "/home/yeung/projects/CyclicGO/data/genes.fg.all.txt", header = FALSE, stringsAsFactors = FALSE)$V1
-genes.bg <- read.csv2(file = "/home/yeung/projects/CyclicGO/data/genes.bg.txt", header = FALSE, stringsAsFactors = FALSE)$V1
+# genes.fg.all <- read.csv2(file = "/home/yeung/projects/CyclicGO/data/genes.fg.all.txt", header = FALSE, stringsAsFactors = FALSE)$V1
+# genes.bg <- read.csv2(file = "/home/yeung/projects/CyclicGO/data/genes.bg.txt", header = FALSE, stringsAsFactors = FALSE)$V1
+
+data(genes.fg.all)
+data(genes.bg)
+
 
 GOterms <- c("GO:0006260", "GO:0042254", "GO:0032868", "GO:0043434", "GO:0046326", "GO:0090526", "GO:0006111",
              "GO:0005977", "GO:0006096", "GO:0006111", "GO:0006110")
 
 enrichment <- RunEnrichment(genes.fg.all, genes.bg, tstarts = c(15), GOterms = GOterms, ncores = 1)
+
+# print(enrichment)

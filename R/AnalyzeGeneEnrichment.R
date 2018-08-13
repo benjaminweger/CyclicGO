@@ -344,12 +344,13 @@ AnalyzeGeneEnrichment <- function(genes.bg, genes.hit,
 
   # Run enrichment ----------------------------------------------------------
 
-  result.fisher <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
-  n.tests <- length(score(result.fisher))
+  result.fisher <- topGO::runTest(GOdata, algorithm = "classic", statistic = "fisher")
+  n.tests <- length(result.fisher@score)
+  # n.tests <- length(score(result.fisher))  calls score from GenomicRanges which is bug
 
   # Look at results ---------------------------------------------------------
 
-  all.res <- GenTable(GOdata,
+  all.res <- topGO::GenTable(GOdata,
                       classicFisher = result.fisher,
                       orderBy = "classicFisher",
                       ranksOf = "classicFisher",

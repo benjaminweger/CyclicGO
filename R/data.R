@@ -2,9 +2,9 @@
 #'
 #' @format List of 1395 genes (system-driven liver-rhythmic genes)
 #' \itemize{
-#'   \item Gene list in alphabetical order
+#'   \item For RunEnrichmentOneTime()
 #' }
-"genesfgall"
+"genes.fg.all"
 
 #' Background gene example
 #'
@@ -12,4 +12,12 @@
 #' \itemize{
 #'   \item Gene list in alphabetical order
 #' }
-"genesg"
+"genes.bg"
+
+#' Dataframe with phase.avg for filtering by tstart and tend
+#'
+#' @format Dataframe 1395 by 12. With gene names and phase.avg 
+#' \itemize{
+#'   \item For RunEnrichment()
+#' }
+"fits.sub.rda"

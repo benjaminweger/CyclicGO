@@ -23,6 +23,7 @@ GOterms <- c("GO:0006260", "GO:0042254", "GO:0032868", "GO:0043434", "GO:0046326
 # multicore not working without sourcing scripts inside
 enrichment <- RunEnrichmentOneTime(genes.fg.all, genes.bg, GOterms = GOterms)
 
-enrichment.multi <- RunEnrichment(fits.sub, genes.bg, tstarts = c(15, 5), GOterms = GOterms, ncores = 1)
+# Run at tstart = 0 and 1 with window size 6 
+enrichment.multi <- RunEnrichment(fits.sub, genes.bg, tstarts = c(0, 1), tstep = 6,  GOterms = GOterms, ncores = 1)
 
 print(enrichment)

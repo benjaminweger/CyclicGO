@@ -4,6 +4,9 @@ RunEnrichment <- function(genes, genes.bg, jonto = "BP", GOterms = FALSE, tstart
   # tstarts: list of tstarts
   # ncores: number of cores for parallelization
 
+  # mclapply doesnt quite work: with DBI package??
+  # https://www.mail-archive.com/bioc-devel@r-project.org/msg08780.html
+  # requires sourcing files INSIDE THE LOOP
   # enrichment <- parallel::mclapply(tstarts, function(tstart){
   enrichment <- lapply(tstarts, function(tstart){
     # source("/home/yeung/projects/CyclicGO/R/AnalyzeGeneEnrichment.R")
@@ -20,7 +23,7 @@ RunEnrichment <- function(genes, genes.bg, jonto = "BP", GOterms = FALSE, tstart
     enrichment <- GetGOEnrichment(genes.bg, genes, fdr.cutoff = 1, ontology = jonto, show.top.n = Inf, filter.GO.terms = GOterms)
     enrichment <- subset(enrichment, !is.na(GO.ID))
     enrichment$tstart <- tstart
-    return(as.data.frame(subset(enrichment, !is.na(GO.ID))))
+  return(as.data.frame(subset(enrichment, !is.na(GO.ID))))
   # }, mc.cores = ncores)
   })
   print(enrichment)

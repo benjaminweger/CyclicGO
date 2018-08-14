@@ -11,9 +11,6 @@
 # NOTE: if you run functions here in parallel (mclapply) you need to source these scripts INSIDE the loop:
 # https://support.bioconductor.org/p/38541/
 
-library(DBI)  # dbGetQuery() not found when loading topGO
-library(topGO)
-library(org.Mm.eg.db)
 
 # source("scripts/functions/DataHandlingFunctions.R")
 # source("/home/yeung/projects/tissue-specificity/scripts/functions/DataHandlingFunctions.R")  # use across different projects
@@ -47,6 +44,9 @@ MergeGOTerms <- function(enrichment, go.terms, new.go.term){
 
 GetGOEnrichment <- function(genes.bg, genes.fg, fdr.cutoff, show.top.n = 8, ontology="BP", filter.GO.terms=FALSE){
   # source(file.path(wd, "scripts/functions/AnalyzeGeneEnrichment.R"))
+  library(DBI)  # dbGetQuery() not found when loading topGO
+  library(topGO)
+  library(org.Mm.eg.db)
   enrichment <- AnalyzeGeneEnrichment(genes.bg, genes.fg, FDR.cutoff = fdr.cutoff, which.ontology = ontology, return.GOdata = TRUE, filter.GO.terms = filter.GO.terms)
   enrichment$minuslogpval <- -log10(as.numeric(enrichment$classicFisher))
 

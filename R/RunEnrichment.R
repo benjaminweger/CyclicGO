@@ -7,6 +7,9 @@ RunEnrichment <- function(genes, genes.bg, jonto = "BP", GOterms = FALSE, tstart
   # enrichment <- parallel::mclapply(tstarts, function(tstart){
   enrichment <- lapply(tstarts, function(tstart){
     # source("/home/yeung/projects/CyclicGO/R/AnalyzeGeneEnrichment.R")
+    library(DBI)  # dbGetQuery() not found when loading topGO
+    library(topGO)
+    library(org.Mm.eg.db)
     tend <- tstart + tstep
     if (tend > day){
       tend <- tend - day

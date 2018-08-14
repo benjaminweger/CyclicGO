@@ -31,7 +31,7 @@ RunEnrichment <- function(fits.long.filt, genes.bg, jonto = "BP", GOterms = FALS
   print(enrichment)
 }
 
-RunEnrichmentOneTime <- function(genes, genes.bg, jonto = "BP", GOterms = FALSE, timelabel){
+RunEnrichmentOneTime <- function(genes, genes.bg, jonto = "BP", GOterms = FALSE, timelabel = ""){
   # genes: genes for enrichment
   # jonto: ontology can be "BP" for biological process or "CC" for cellular component or "MF" for molecular function.
   # GOterms: FALSE does all GO terms. Otherwise input a list c("GO:008152") as example https://www.ebi.ac.uk/QuickGO/annotations

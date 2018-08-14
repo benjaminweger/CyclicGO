@@ -21,3 +21,11 @@
 #'   \item For RunEnrichment()
 #' }
 "fits.sub.rda"
+
+#' Dataframe with phase.avg for filtering by tstart and tend
+#'
+#' @format Dataframe 216 by 11. Example output of enrichment
+#' \itemize{
+#'   \item Can be used for plotting downstream
+#' }
+"enrichment.rda"
